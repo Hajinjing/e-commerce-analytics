@@ -39,7 +39,7 @@ driver = webdriver.Chrome('./chromedriver', options=option)
 # driver.implicitly_wait(1)
 
 # url = 'https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010008&isLoginCnt=3&aShowCnt=0&bShowCnt=0&cShowCnt=0&trackingCd=Cat100000100010008_MID'
-url = 'https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010008&fltDispCatNo=&prdSort=03&pageIdx={}&rowsPerPage=24&searchTypeSort=btn_thumb&plusButtonFlag=N&isLoginCnt=0&aShowCnt=0&bShowCnt=0&cShowCnt=0&trackingCd=Cat100000100010008_Small'
+url = 'https://www.oliveyoung.co.kr/store/display/getMCategoryList.do?dispCatNo=100000100010009&fltDispCatNo=&prdSort=03&pageIdx={}&rowsPerPage=24&searchTypeSort=btn_thumb&plusButtonFlag=N&isLoginCnt=0&aShowCnt=0&bShowCnt=0&cShowCnt=0&trackingCd=Cat100000100010009_Small'
 
 driver.implicitly_wait(1)
 driver.get(url)
@@ -79,7 +79,7 @@ def crawlingReview():
 
 
 # 페이지 이동이..
-for p in range(7, 31):
+for p in range(2, 47):
     print(p, '페이지')
     time.sleep(0.5)
     driver.get(url.format(p))
@@ -88,7 +88,7 @@ for p in range(7, 31):
     # 1페이지당 24개의 제품
     for s in range(2, 8):
         for n in range(1, 5):
-            print(s, '단락',n,'번째 아이템')
+            print(s, '단락', n, '번째 아이템')
             driver.find_element_by_xpath(item_xpath.format(s, n)).click()
             time.sleep(1.0)
             url2 = driver.current_url
@@ -126,6 +126,6 @@ for p in range(7, 31):
     df = pd.DataFrame({'item': item_list2, 'star': star_list, 'reviewNum': review_list, 'url': url_list})
     df2 = pd.DataFrame(
         {'date': date_list, 'id': user_list, 'item': itemNames, 'reviewContent': review_contents, 'star': review_point})
-    df.to_csv('./crawlingData/itemlist{}.csv'.format(p), index=False)
-    df2.to_csv('./crawlingData/reviews{}.csv'.format(p), index=False)
+    df.to_csv('./crawlingData/cream_itemlist{}.csv'.format(p), index=False)
+    df2.to_csv('./crawlingData/cream_reviews{}.csv'.format(p), index=False)
 driver.quit()
