@@ -83,7 +83,7 @@ for p in range(7, 31):
     print(p, '페이지')
     time.sleep(0.5)
     driver.get(url.format(p))
-    print(driver.current_url,'url을 받아오나?')
+    # print(driver.current_url,'url을 받아오나?')
     time.sleep(0.7)
     # 1페이지당 24개의 제품
     for s in range(2, 8):
@@ -126,6 +126,6 @@ for p in range(7, 31):
     df = pd.DataFrame({'item': item_list2, 'star': star_list, 'reviewNum': review_list, 'url': url_list})
     df2 = pd.DataFrame(
         {'date': date_list, 'id': user_list, 'item': itemNames, 'reviewContent': review_contents, 'star': review_point})
-    df.to_csv('./crawlingData/itemlist7.csv', index=False)
-    df2.to_csv('./crawlingData/reviews7.csv', index=False)
+    df.to_csv('./crawlingData/itemlist{}.csv'.format(p), index=False)
+    df2.to_csv('./crawlingData/reviews{}.csv'.format(p), index=False)
 driver.quit()
